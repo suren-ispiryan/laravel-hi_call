@@ -14,8 +14,12 @@ use App\Http\Controllers\SignController;
 |
 */
 
+// sign
 Route::post('register', [SignController::class, 'register']);
+Route::post('login', [SignController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::middleware('auth:sanctum')->group(function () {
+    // logout
+    Route::get('/logout', [SignController::class, 'logout']);
 });

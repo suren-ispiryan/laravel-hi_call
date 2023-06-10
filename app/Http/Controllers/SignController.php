@@ -22,5 +22,24 @@ class SignController extends Controller
         }
         return "Something went wrong";
     }
+
+    public function login (Request $request) {
+        $credentials = [
+            'email' => $request->data["email"],
+            'password' => $request->data["password"],
+        ];
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('token')->plainTextToken;
+            return response($token);
+        }
+        return "Something went wrong";
+    }
+
+    public function logout() {
+        Auth::user()->tokens()->delete();
+        return 'loggedOut';
+    }
 }
 
