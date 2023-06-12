@@ -26,5 +26,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // get users
     Route::get('/get-users', [ChatController::class, 'getUsers']);
     Route::get('/get-auth-user', [ChatController::class, 'getAuthUser']);
+    // messages
+    Route::post('/sendMessage', [ChatController::class, 'createMessage']);
+    Route::get('/get-messages', [ChatController::class, 'getMessages']);
 });
+
 
